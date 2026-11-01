@@ -1,0 +1,3 @@
+VCD info: dumpfile results/case_overlap.vcd opened for output.
+case_overlap: 4 vectors, errors = 0 -> PASS
+tb_case_overlap.v:14: $finish called at 20000 (1ps)

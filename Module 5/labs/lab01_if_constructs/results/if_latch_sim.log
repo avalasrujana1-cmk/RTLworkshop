@@ -1,0 +1,3 @@
+VCD info: dumpfile results/if_latch.vcd opened for output.
+if_latch: after sel=0, y=1 (held value from the last transparent phase)
+tb_if_latch.v:15: $finish called at 70000 (1ps)

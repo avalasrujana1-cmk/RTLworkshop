@@ -1,0 +1,16 @@
+8. Printing statistics.
+=== case_latch ===
+   Number of wires:                  7
+   Number of wire bits:              8
+   Number of public wires:           4
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  4
+     $_DLATCH_N_                     1
+     sky130_fd_sc_hd__buf_1          1
+     sky130_fd_sc_hd__mux2_1         1
+     sky130_fd_sc_hd__nand2b_1       1
+   Area for cell type $_DLATCH_N_ is unknown!
+   Chip area for module '\case_latch': 21.270400

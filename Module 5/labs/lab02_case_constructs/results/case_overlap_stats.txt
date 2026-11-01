@@ -1,0 +1,13 @@
+8. Printing statistics.
+=== case_overlap ===
+   Number of wires:                  2
+   Number of wire bits:              4
+   Number of public wires:           2
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  2
+     sky130_fd_sc_hd__buf_1          1
+     sky130_fd_sc_hd__lpflow_isobufsrc_1      1
+   Chip area for module '\case_overlap': 10.009600

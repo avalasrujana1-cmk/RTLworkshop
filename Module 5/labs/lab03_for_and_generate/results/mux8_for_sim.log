@@ -1,0 +1,3 @@
+VCD info: dumpfile results/mux8_for.vcd opened for output.
+mux8_for: 2048 vectors, errors = 0 -> PASS
+tb_mux8_for.v:14: $finish called at 4096000 (1ps)

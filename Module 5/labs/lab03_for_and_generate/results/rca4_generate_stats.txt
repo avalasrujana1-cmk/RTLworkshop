@@ -1,0 +1,13 @@
+8. Printing statistics.
+=== rca4_generate ===
+   Number of wires:                 26
+   Number of wire bits:             39
+   Number of public wires:          26
+   Number of public wire bits:      39
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  8
+     sky130_fd_sc_hd__maj3_1         4
+     sky130_fd_sc_hd__xor3_1         4
+   Chip area for module '\rca4_generate': 135.129600

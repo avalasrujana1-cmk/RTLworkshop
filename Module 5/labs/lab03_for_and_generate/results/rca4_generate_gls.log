@@ -1,0 +1,3 @@
+VCD info: dumpfile results/rca4_generate.vcd opened for output.
+rca4_generate: 512 vectors, errors = 0 -> PASS
+tb_rca4_generate.v:16: $finish called at 1024000 (1ps)

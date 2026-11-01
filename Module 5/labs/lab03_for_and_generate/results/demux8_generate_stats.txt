@@ -1,0 +1,15 @@
+8. Printing statistics.
+=== demux8_generate ===
+   Number of wires:                  3
+   Number of wire bits:             12
+   Number of public wires:           3
+   Number of public wire bits:      12
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  8
+     sky130_fd_sc_hd__and4_1         1
+     sky130_fd_sc_hd__and4b_1        3
+     sky130_fd_sc_hd__nor4b_1        1
+     sky130_fd_sc_hd__nor4bb_1       3
+   Chip area for module '\demux8_generate': 77.574400

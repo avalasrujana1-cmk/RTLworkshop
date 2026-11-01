@@ -1,0 +1,3 @@
+VCD info: dumpfile results/demux8_generate.vcd opened for output.
+demux8_generate: 16 vectors, errors = 0 -> PASS
+tb_demux8_generate.v:14: $finish called at 32000 (1ps)

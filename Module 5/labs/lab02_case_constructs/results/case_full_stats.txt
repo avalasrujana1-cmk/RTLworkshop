@@ -1,0 +1,12 @@
+8. Printing statistics.
+=== case_full ===
+   Number of wires:                  3
+   Number of wire bits:              7
+   Number of public wires:           3
+   Number of public wire bits:       7
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__mux4_2         1
+   Chip area for module '\case_full': 22.521600

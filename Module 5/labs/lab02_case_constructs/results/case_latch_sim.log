@@ -1,0 +1,6 @@
+VCD info: dumpfile results/case_latch.vcd opened for output.
+sel=2 y=1  (unspecified item: output keeps its old value)
+sel=2 y=1  (a and b both fell to 0, y still holds)
+sel=3 y=1  (still holds)
+sel=0 y=0  (mux active again, y follows a)
+tb_case_latch.v:13: $finish called at 60000 (1ps)
