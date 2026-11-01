@@ -1,37 +1,54 @@
-# Practical: Synthesizing picorv32a
+# Practical: Floorplan and Placement of picorv32a
 
 ## Goal
 
-Prepare `picorv32a` in OpenLANE, run synthesis, and record the main statistics.
+Run floorplan and placement on `picorv32a`, inspect them in Magic, and record the core size.
 
 ## Steps
 
-1. Start the OpenLANE container and `./flow.tcl -interactive` (see topic 9).
-2. Load the package and prepare the design:
+1. Start OpenLANE and prepare the design:
    ```tcl
    package require openlane <version>
    prep -design picorv32a
-   ```
-3. Run synthesis:
-   ```tcl
    run_synthesis
    ```
-4. Open the run folder and inspect:
-   ```bash
-   ls designs/picorv32a/runs/<tag>/results/synthesis
-   less designs/picorv32a/runs/<tag>/reports/synthesis/*stat.rpt
+2. Check and set floorplan variables:
+   ```tcl
+   echo $::env(FP_CORE_UTIL)
+   echo $::env(FP_ASPECT_RATIO)
    ```
-5. Calculate the flop ratio and copy your numbers into the table in topic 11.
+3. Run the floorplan:
+   ```tcl
+   run_floorplan
+   ```
+4. Read `DIEAREA` from `results/floorplan/picorv32a.floorplan.def`, convert to µm (divide by 1000), and compute the area.
+5. Open the floorplan in Magic (topic 8) and inspect pins, rows and tap cells.
+6. Run placement:
+   ```tcl
+   run_placement
+   ```
+7. Open `results/placement/picorv32a.placement.def` in Magic and check that cells are legalized in rows.
 
 ## Screenshots to add
 
-- 📷 `prep -design picorv32a` output
-- 📷 `run_synthesis` finishing without errors
-- 📷 Synthesis statistics report
-- 📷 Contents of `results/synthesis`
+- 📷 `run_floorplan` output
+- 📷 `DIEAREA` line in the DEF
+- 📷 Floorplan in Magic
+- 📷 `run_placement` output
+- 📷 Placement in Magic (full view and zoomed)
 
-## Questions to answer in your notes
+## Results table (fill from your run)
 
-- Which cell type is used most often in the netlist?
-- What is the flop ratio, and what does it say about the design?
-- What happens to cell count and area when you switch `SYNTH_STRATEGY` between area- and delay-oriented values?
+| Item | Value |
+|---|---|
+| `FP_CORE_UTIL` | |
+| `FP_ASPECT_RATIO` | |
+| Die width × height (µm) | |
+| Die area (µm²) | |
+| Placement completed without errors | |
+
+## Questions
+
+- Does the die area match what you expect from the synthesized netlist area and the utilization?
+- What changes in the floorplan when you change `FP_IO_MODE`?
+- Where do you see the effect of congestion-aware placement?

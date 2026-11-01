@@ -1,43 +1,40 @@
-# Module 6 – OpenLANE and the SKY130 PDK
+# Module 7 – Floorplanning, Library Cells and Placement
 
 ## Overview
 
-Modules 1–5 stopped at the gate-level netlist. This module starts the physical-design side: what an SoC is, why open-source EDA and RISC-V make a free RTL-to-GDSII flow possible, how the OpenLANE flow is organised, and how to run the first stage, synthesis, on the `picorv32a` RISC-V core.
+After synthesis the design is a netlist: cells and connections, with no physical position. This module covers the first physical stages: **floorplanning** (how big the chip is, where the pins and power go) and **placement** (where every cell sits), and the library information those stages rely on.
 
 ## Objectives
 
-- Explain why open-source EDA, open PDKs and open ISAs matter.
-- Trace a C program down to hardware (compiler → assembly → binary → RTL).
-- Describe the RTL-to-GDSII stages and the tool behind each one.
-- Understand the SKY130 PDK and its standard-cell libraries.
-- Prepare a design in OpenLANE and run synthesis.
-- Read the synthesis reports.
+- Define utilization factor and aspect ratio and compute them.
+- Explain pre-placed cells, decoupling capacitors, power planning, pin placement and blockages.
+- Run `run_floorplan` and `run_placement` in OpenLANE and inspect results in Magic.
+- Explain library binding and placement optimization.
+- Explain how a standard cell is characterized and what the timing parameters mean.
 
 ## Contents
 
 | # | File | Topic |
 |---|---|---|
-| 1 | [01-Open-Source-EDA.md](01-Open-Source-EDA.md) | Why open-source EDA, tool landscape |
-| 2 | [02-RISC-V.md](02-RISC-V.md) | RISC-V ISA and the picorv32a core |
-| 3 | [03-Software-to-Hardware.md](03-Software-to-Hardware.md) | From C code to a hardware implementation |
-| 4 | [04-SoC-and-OpenLANE.md](04-SoC-and-OpenLANE.md) | SoC building blocks, why OpenLANE |
-| 5 | [05-RTL-to-GDSII-Flow.md](05-RTL-to-GDSII-Flow.md) | The ASIC flow stage by stage |
-| 6 | [06-OpenLANE.md](06-OpenLANE.md) | OpenLANE architecture and modes |
-| 7 | [07-SKY130-PDK.md](07-SKY130-PDK.md) | The SKY130 PDK and its cell libraries |
-| 8 | [08-OpenLANE-Directory-Structure.md](08-OpenLANE-Directory-Structure.md) | Where everything lives |
-| 9 | [09-Design-Preparation.md](09-Design-Preparation.md) | `prep -design` and configuration |
-| 10 | [10-Synthesis.md](10-Synthesis.md) | `run_synthesis` and its knobs |
-| 11 | [11-Synthesis-Results.md](11-Synthesis-Results.md) | Reading reports, flop ratio |
-| – | [Important-OpenLANE-Commands.md](Important-OpenLANE-Commands.md) | Command cheat sheet |
-| – | [Practical-Design.md](Practical-Design.md) | picorv32a lab walkthrough |
-| – | [Key-Learnings.md](Key-Learnings.md) | Summary |
+| 1 | [01-Floorplanning.md](01-Floorplanning.md) | Floorplan overview, die and core |
+| 2 | [02-Utilization-and-Aspect-Ratio.md](02-Utilization-and-Aspect-Ratio.md) | Two key numbers |
+| 3 | [03-Preplaced-Cells.md](03-Preplaced-Cells.md) | Macros and IP blocks |
+| 4 | [04-Decoupling-Capacitors.md](04-Decoupling-Capacitors.md) | Local charge storage |
+| 5 | [05-Power-Planning.md](05-Power-Planning.md) | Power grid |
+| 6 | [06-Pin-Placement-and-Blockages.md](06-Pin-Placement-and-Blockages.md) | I/O pins, keep-out regions |
+| 7 | [07-Running-Floorplan.md](07-Running-Floorplan.md) | `run_floorplan` |
+| 8 | [08-Viewing-Floorplan-in-Magic.md](08-Viewing-Floorplan-in-Magic.md) | Inspecting the DEF |
+| 9 | [09-Library-Binding.md](09-Library-Binding.md) | Netlist cells ↔ physical cells |
+| 10 | [10-Placement-Optimization.md](10-Placement-Optimization.md) | Global/detailed placement, congestion |
+| 11 | [11-Library-Characterization.md](11-Library-Characterization.md) | How cell timing is produced |
+| 12 | [12-Timing-Parameters.md](12-Timing-Parameters.md) | Delay and slew definitions |
+| – | [Practical-Design.md](Practical-Design.md) | picorv32a floorplan and placement lab |
 
-## Flow covered in this module
+## Flow covered
 
 ```text
-RTL (picorv32a) ─► prep ─► synthesis (Yosys + ABC) ─► netlist + reports
-                                   │
-                  floorplan, placement, CTS, routing ─► Module 7 and beyond
+Synthesized netlist ─► Floorplan ─► Placement ─► (CTS, routing, signoff…)
+                         │              │
+              die/core, pins,     global + detailed placement,
+              power, macros       optimization, congestion handling
 ```
-
-> **Note on results.** OpenLANE needs Docker and the full SKY130 PDK, so the numbers in your own run (cell count, area, flop ratio, slack) go into the tables marked *Your result*. Command output depends on the OpenLANE version, so check it against the one you installed.
